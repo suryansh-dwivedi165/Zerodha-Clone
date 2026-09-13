@@ -1,0 +1,19 @@
+.icon i:hover {
+    color:blue;
+    transform: scale(1.3);
+} 
+
+.icon i:active {
+    color:red;
+} 
+
+.hr {
+    margin-top:1rem;
+    width:13em;
+    height:1px;
+    background-color: #ccc;
+} 
+
+a:hover {
+    color:blue;
+} 
