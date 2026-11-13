@@ -8,7 +8,7 @@ const cors = require("cors");
 const { HoldingsModel } = require("./model/HoldingModel");
 const { PositionModel } = require("./model/PositionsModel");
 
-const { OrderModel } = require("./model/OrdersModel");
+const OrdersModel  = require("./model/OrdersModel");
 const port = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 
@@ -194,19 +194,19 @@ app.get("/allPositions", async(req, res) => {
 });
 
 app.post("/newOrder", async(req, res) => {
-     let newOrder = new OrderModel({
+     let newOrder = new OrdersModel({
         name:req.body.name,
         qty: req.body.qty,
         price:req.body.price,
         mode: req.body.mode,
      });
 
-     newOrder.aave();
+     newOrder.save();
      res.send("order saved");
 }) 
 
 app.listen(port, () => {
   console.log(`Server is listening on port ${port}`);
   mongoose.connect(uri);
-  console.log("db connectes");
+  console.log("db connecte");
 });
