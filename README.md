@@ -71,55 +71,35 @@ zerodha-clone/
 
 ---
 
-## 🚀 Installation
+## 🚀 Run locally
 
-### Clone the Repository
+Install dependencies from the repository root:
 
-```bash
-git clone https://github.com/suryansh-dwivedi165/zerodha-clone.git
-```
-
-### Navigate to the Project
-
-```bash
-cd zerodha-clone
-```
-
-### Install Frontend Dependencies
-
-```bash
+```powershell
 cd frontend
 npm install
-```
-
-### Install Backend Dependencies
-
-```bash
-cd ../backend
+cd ..\dashboard
+npm install
+cd ..\backend
 npm install
 ```
 
-### Configure Environment Variables
+Set `MONGO_URL` in `backend\.env` to your MongoDB connection string. Then, from
+the `backend` folder, run:
 
-Create a `.env` file inside the backend folder.
-
-```env
-MONGO_URL=your_mongodb_connection_string
-JWT_SECRET=your_secret_key
-PORT=8080
+```powershell
+npm run start:site
 ```
 
-### Start Backend
+This builds the website and dashboard and serves them, together with the API,
+from one origin:
 
-```bash
-node index.js
-```
+- Website: `http://localhost:3001/`
+- Dashboard: `http://localhost:3001/dashboard`
+- API health: `http://localhost:3001/api/health`
 
-### Start Frontend
-
-```bash
-npm start
-```
+Stop any existing dashboard or backend dev servers before starting the unified
+server, since it uses port `3001`.
 
 ---
 

@@ -1,6 +1,7 @@
 const { Schema } = require("mongoose");
 
 const HolidingSchema = new Schema({
+    userId: { type: Schema.Types.ObjectId, ref: "user", index: true },
     name:String,
     qty:Number,
     avg:Number,

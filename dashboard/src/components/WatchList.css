@@ -1,0 +1,136 @@
+.watchlist-actions {
+  z-index: 2;
+  padding-right: 8px;
+}
+
+.watchlist-action-buttons {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px;
+  border: 1px solid #e8ebef;
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 3px 12px rgba(32, 42, 55, 0.1);
+}
+
+.watchlist-action-buttons .watchlist-action-button {
+  display: inline-flex;
+  width: auto;
+  min-width: 40px;
+  height: 30px;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  margin: 0;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  transition: background-color 130ms ease, border-color 130ms ease,
+    box-shadow 130ms ease, transform 130ms ease;
+}
+
+.watchlist-action-buttons .watchlist-buy-button {
+  border-color: #278151;
+  background: #328b5c;
+  color: #fff;
+}
+
+.watchlist-action-buttons .watchlist-buy-button:hover {
+  border-color: #216d44;
+  background: #27794e;
+}
+
+.watchlist-action-buttons .watchlist-sell-button {
+  border-color: #d65b57;
+  background: #df6560;
+  color: #fff;
+}
+
+.watchlist-action-buttons .watchlist-sell-button:hover {
+  border-color: #bd4845;
+  background: #ca514d;
+}
+
+.watchlist-action-buttons .watchlist-tool-button {
+  width: 30px;
+  min-width: 30px;
+  padding: 0;
+  border-color: #e2e6eb;
+  background: #fff;
+  color: #64707d;
+}
+
+.watchlist-action-buttons .watchlist-tool-button:hover {
+  border-color: #cbd4de;
+  background: #f2f5f8;
+  color: #394654;
+}
+
+.watchlist-action-buttons .watchlist-tool-button .icon {
+  width: 18px;
+  height: 18px;
+  transform: none;
+}
+
+.watchlist-action-buttons .watchlist-action-button:focus-visible {
+  outline: 3px solid rgba(56, 126, 209, 0.32);
+  outline-offset: 2px;
+}
+
+.watchlist-action-buttons .watchlist-action-button:active {
+  transform: translateY(1px);
+}
+
+.order-dialog-actions .order-dialog-submit.buy {
+  border-color: #278151;
+  background: #328b5c;
+  color: #fff;
+}
+
+.order-dialog-actions .order-dialog-submit.buy:hover:not(:disabled) {
+  border-color: #216d44;
+  background: #27794e;
+  filter: none;
+}
+
+.order-dialog-actions .order-dialog-submit.sell {
+  border-color: #d65b57;
+  background: #df6560;
+  color: #fff;
+}
+
+.order-dialog-actions .order-dialog-submit.sell:hover:not(:disabled) {
+  border-color: #bd4845;
+  background: #ca514d;
+  filter: none;
+}
+
+@media (max-width: 600px) {
+  .watchlist-action-buttons {
+    gap: 4px;
+    padding: 4px;
+  }
+
+  .watchlist-action-buttons .watchlist-action-button {
+    min-width: 34px;
+    height: 28px;
+    padding: 0 7px;
+  }
+
+  .watchlist-action-buttons .watchlist-tool-button {
+    width: 28px;
+    min-width: 28px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .watchlist-action-buttons .watchlist-action-button {
+    transition: none;
+  }
+}

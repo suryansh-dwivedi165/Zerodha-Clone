@@ -1,0 +1,211 @@
+.order-dialog-backdrop {
+  position: fixed;
+  z-index: 1200;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgba(24, 30, 38, 0.42);
+}
+
+.order-dialog {
+  width: min(100%, 440px);
+  overflow: hidden;
+  border: 1px solid #e8eaf0;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 20px 60px rgba(18, 26, 39, 0.2);
+}
+
+.order-dialog-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 22px 24px;
+  color: #fff;
+}
+
+.order-dialog-header.buy {
+  background: #32845b;
+}
+
+.order-dialog-header.sell {
+  background: #c65353;
+}
+
+.order-dialog-header p,
+.order-dialog-header h2 {
+  margin: 0;
+}
+
+.order-dialog-header p {
+  margin-bottom: 5px;
+  font-size: 12px;
+  opacity: 0.85;
+}
+
+.order-dialog-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.order-dialog-close {
+  width: 32px;
+  height: 32px;
+  border: 0;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #fff;
+  cursor: pointer;
+  font-size: 24px;
+  line-height: 1;
+}
+
+.order-dialog-close:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.order-dialog-fields {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  padding: 24px 24px 18px;
+}
+
+.order-dialog-fields label {
+  display: grid;
+  gap: 8px;
+  color: #626b77;
+  font-size: 12px;
+}
+
+.order-dialog-fields input,
+.order-dialog-fields select {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 42px;
+  padding: 0 12px;
+  border: 1px solid #dfe3e8;
+  border-radius: 6px;
+  color: #252b33;
+  font: inherit;
+  font-size: 14px;
+}
+
+.order-dialog-fields input:focus {
+  border-color: #5990d2;
+  outline: 3px solid rgba(56, 126, 209, 0.14);
+}
+
+.order-dialog-fields select:focus {
+  border-color: #5990d2;
+  outline: 3px solid rgba(56, 126, 209, 0.14);
+}
+
+.order-dialog-total {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 24px;
+  padding: 15px 0;
+  border-top: 1px solid #edf0f3;
+  border-bottom: 1px solid #edf0f3;
+  color: #69727e;
+  font-size: 13px;
+}
+
+.order-dialog-total strong {
+  color: #303740;
+  font-size: 15px;
+}
+
+.order-dialog-error {
+  margin: 14px 24px 0;
+  color: #b42318;
+  font-size: 13px;
+}
+
+.order-dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 20px 24px 12px;
+}
+
+.order-dialog-actions button {
+  min-height: 40px;
+  padding: 0 14px;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.order-dialog-actions button:disabled {
+  cursor: wait;
+  opacity: 0.65;
+}
+
+.order-dialog-actions button:focus-visible,
+.order-dialog-close:focus-visible {
+  outline: 3px solid rgba(56, 126, 209, 0.35);
+  outline-offset: 2px;
+}
+
+.order-dialog-cancel {
+  border-color: #dfe3e8 !important;
+  background: #fff;
+  color: #4d5662;
+}
+
+.order-dialog-submit.buy {
+  background: #32845b;
+  color: #fff;
+}
+
+.order-dialog-submit.sell {
+  background: #c65353;
+  color: #fff;
+}
+
+.order-dialog-submit:hover:not(:disabled) {
+  filter: brightness(0.94);
+}
+
+.order-dialog-submit:active:not(:disabled) {
+  transform: translateY(1px);
+}
+
+.order-dialog-note {
+  margin: 0;
+  padding: 0 24px 18px;
+  color: #9299a3;
+  font-size: 11px;
+  text-align: right;
+}
+
+@media (max-width: 480px) {
+  .order-dialog-fields {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .order-dialog-submit {
+      transition: none;
+    }
+  }
+
+  .order-dialog-total {
+    margin: 0 20px;
+  }
+
+  .order-dialog-actions {
+    padding-right: 20px;
+    padding-left: 20px;
+  }
+}

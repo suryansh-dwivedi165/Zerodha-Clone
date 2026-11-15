@@ -1,32 +1,55 @@
-import React from 'react';
+import React from "react";
 
-function Hero() {
-    return (
-        <section className="container-fluid" id="supportHero">
-            <div className="p-4" id="supportWrapper">
-                <h4 className=" mt-4 fs-2">Support Portal</h4>
-                <a href="" className="mx-5 fs-2" style={{textDecoration:"none"}}>Track Tickets</a>
-            </div>
-            <div className="row py-4 ms-5">
-                <div className="col-6 p-5">
-                    <h1 className='fs-3' style={{marginBottom:"20px"}}>Search for an answer or browse help topics to create a ticket</h1>
-                    <input placeholder="Eg. how do I activate F&O, why is my order getting rejected."/>
-                    <div className="mt-4">
-                        <span><a href="">Track account opening</a></span>
-                        <span><a href="">Track segment activation</a></span>
-                        <span><a href="">Intraday margins</a></span>
-                        <span><a href="">Kite user manual</a></span>
-                    </div>
-                </div> 
-            <div className="col-6 p-5" style={{listStylePosition:"inside"}}> 
-                <h1 style={{textAlign:"left", marginLeft:"120px"}}>Featured</h1>
-                <ol style={{textAlign:"left", marginLeft:"70px"}}>
-                    <li><a href="">Current Takeovers and Delisting - January 2024</a></li>
-                    <li><a href="">Latest Intraday leverages - MIS & CO</a></li>
-                </ol>
-            </div>
+const quickLinks = [
+  "Account opening",
+  "Funds",
+  "Trading and orders",
+  "Your account",
+];
+
+const Hero = ({ search, onSearchChange }) => (
+  <section className="support-hero">
+    <div className="support-hero-inner">
+      <div className="support-hero-topline">
+        <div>
+          <span className="support-eyebrow">ZERODHA SUPPORT</span>
+          <h1>How can we help?</h1>
         </div>
-        </section>
-    )
-} 
-export default Hero; 
+        <a className="support-track-link" href="#help-topics">
+          Browse help topics <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <p className="support-hero-description">
+        Search for an answer or browse topics to find the support you need.
+      </p>
+
+      <label className="support-search">
+        <span className="support-search-icon" aria-hidden="true">⌕</span>
+        <input
+          type="search"
+          value={search}
+          onChange={(event) => onSearchChange(event.target.value)}
+          placeholder="Try “withdraw funds” or “reset password”"
+          aria-label="Search help topics"
+        />
+        <kbd>Search</kbd>
+      </label>
+
+      <div className="support-quick-links" aria-label="Popular topics">
+        <span>Popular:</span>
+        {quickLinks.map((topic) => (
+          <button
+            type="button"
+            key={topic}
+            onClick={() => onSearchChange(topic)}
+          >
+            {topic}
+          </button>
+        ))}
+      </div>
+    </div>
+  </section>
+);
+
+export default Hero;

@@ -1,9 +1,13 @@
 import React from "react";
-import OpenAccount from "../OpenAccount";
+import AccountForm from "../AccountForm";
+import LeftSection from "./LeftSection";
 
 function Signup() {
   return (
-    <OpenAccount></OpenAccount>
+    <>
+      <AccountForm mode="register" />
+      <LeftSection/>
+    </>
   );
 }
 
