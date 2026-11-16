@@ -46,7 +46,10 @@ function Navbar() {
   }, []);
 
   const dashboardUrl =
-    process.env.REACT_APP_DASHBOARD_URL || "http://localhost:3001/dashboard";
+    process.env.REACT_APP_DASHBOARD_URL ||
+    (process.env.NODE_ENV === "production"
+      ? "/dashboard"
+      : "http://localhost:3001/dashboard");
 
   const handleLogout = async () => {
     setLogoutError("");

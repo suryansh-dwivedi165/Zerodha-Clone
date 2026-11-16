@@ -16,6 +16,7 @@ const uri = process.env.MONGO_URL;
 const sessionCookieName = "zerodha_session";
 const sessionDurationMs = 7 * 24 * 60 * 60 * 1000;
 const scrypt = promisify(crypto.scrypt);
+let databaseConnectionPromise;
 
 const app = express();
 const apiRouter = express.Router();
@@ -26,18 +27,38 @@ const allowedOrigins = [
 ];
 
 app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin || allowedOrigins.includes(origin)) {
-        callback(null, true);
-        return;
-      }
-      callback(new Error("Origin is not allowed by CORS"));
-    },
-    credentials: true,
+  cors((req, callback) => {
+    const origin = req.header("Origin");
+    const requestOrigin = `${req.headers["x-forwarded-proto"] || req.protocol}://${req.get("host")}`;
+    if (!origin || allowedOrigins.includes(origin) || origin === requestOrigin) {
+      callback(null, { origin: true, credentials: true });
+      return;
+    }
+    callback(new Error("Origin is not allowed by CORS"));
   })
 );
 app.use(express.json({ limit: "10kb" }));
+
+const ensureDatabaseConnection = async (req, res, next) => {
+  try {
+    if (!uri) {
+      throw new Error("MONGO_URL must be configured");
+    }
+    if (mongoose.connection.readyState !== 1) {
+      if (mongoose.connection.readyState === 0 || !databaseConnectionPromise) {
+        databaseConnectionPromise = mongoose.connect(uri).catch((error) => {
+          databaseConnectionPromise = undefined;
+          throw error;
+        });
+      }
+      await databaseConnectionPromise;
+    }
+    next();
+  } catch (error) {
+    console.error("Failed to connect to MongoDB:", error);
+    res.status(503).json({ message: "Database unavailable" });
+  }
+};
 
 const getCookieValue = (req, cookieName) => {
   const cookies = (req.headers.cookie || "").split(";");
@@ -582,7 +603,7 @@ apiRouter.post("/newOrder", requireAuth, async (req, res) => {
   }
 });
 
-app.use("/api", apiRouter);
+app.use("/api", ensureDatabaseConnection, apiRouter);
 app.use("/", apiRouter);
 app.use("/api", (req, res) => {
   res.status(404).json({ message: "API endpoint not found" });
@@ -626,4 +647,8 @@ const startServer = async () => {
   }
 };
 
-startServer();
+module.exports = app;
+
+if (require.main === module) {
+  startServer();
+}

@@ -101,6 +101,16 @@ from one origin:
 Stop any existing dashboard or backend dev servers before starting the unified
 server, since it uses port `3001`.
 
+## Deploy as one Vercel application
+
+Import the repository root (`delta-demo`) as a single Vercel project. The
+`vercel.json` build combines the frontend and dashboard into one static output,
+serves the Express API under `/api/*`, and keeps dashboard routes under
+`/dashboard/*`. Configure `MONGO_URL` in the Vercel project's Environment
+Variables, then deploy. The frontend and dashboard use same-origin API and
+navigation paths in production, so separate frontend/backend URLs are not
+required.
+
 ---
 
 ## 📸 Screenshots

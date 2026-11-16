@@ -22,7 +22,10 @@ const AccountForm = ({ mode }) => {
         isRegister ? { name, email, password } : { email, password }
       );
       window.location.assign(
-        process.env.REACT_APP_DASHBOARD_URL || "http://localhost:3001"
+        process.env.REACT_APP_DASHBOARD_URL ||
+          (process.env.NODE_ENV === "production"
+            ? "/dashboard"
+            : "http://localhost:3001")
       );
     } catch (requestError) {
       setError(

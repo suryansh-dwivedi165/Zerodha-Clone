@@ -14,7 +14,8 @@ const navigationItems = [
 
 const Menu = ({ user, onLogout }) => {
   const configuredHomeUrl =
-    process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000";
+    process.env.REACT_APP_FRONTEND_URL ||
+    (process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000");
   const homeUrl =
     configuredHomeUrl === "/" ? "/" : configuredHomeUrl.replace(/\/$/, "");
   const initials = (user?.name || "User")

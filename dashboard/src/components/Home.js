@@ -10,7 +10,8 @@ const Home = () => {
   const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [sessionError, setSessionError] = useState("");
   const frontendUrl = (
-    process.env.REACT_APP_FRONTEND_URL || "http://localhost:3000"
+    process.env.REACT_APP_FRONTEND_URL ||
+    (process.env.NODE_ENV === "production" ? "/" : "http://localhost:3000")
   ).replace(/\/$/, "");
 
   useEffect(() => {
