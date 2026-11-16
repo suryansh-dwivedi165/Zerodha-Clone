@@ -1,0 +1,46 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+
+  "services": {
+    "frontend": {
+      "root": "frontend",
+      "framework": "vite"
+    },
+    "dashboard": {
+      "root": "dashboard",
+      "framework": "vite"
+    },
+    "backend": {
+      "root": "backend",
+      "framework": "express",
+      "entrypoint": "index.js"
+    }
+  },
+
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "backend"
+      }
+    },
+    {
+      "source": "/dashboard",
+      "destination": {
+        "service": "dashboard"
+      }
+    },
+    {
+      "source": "/dashboard/(.*)",
+      "destination": {
+        "service": "dashboard"
+      }
+    },
+    {
+      "source": "/(.*)",
+      "destination": {
+        "service": "frontend"
+      }
+    }
+  ]
+}
