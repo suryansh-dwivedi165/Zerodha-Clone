@@ -1,24 +1,37 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "installCommand": "npm run vercel:install",
-  "buildCommand": "npm run vercel:build",
-  "outputDirectory": "vercel-dist",
+  "services": {
+    "backend": {
+      "root": "backend",
+      "framework": "express"
+    },
+    "dashboard": {
+      "root": "dashboard",
+      "framework": "create-react-app"
+    },
+    "frontend": {
+      "root": "frontend",
+      "framework": "create-react-app"
+    }
+  },
   "rewrites": [
     {
-      "source": "/api/:path*",
-      "destination": "/api?__api_path=/:path*"
-    },
-    {
-      "source": "/dashboard",
-      "destination": "/dashboard/index.html"
-    },
-    {
       "source": "/dashboard/(.*)",
-      "destination": "/dashboard/index.html"
+      "destination": {
+        "service": "dashboard"
+      }
+    },
+    {
+      "source": "/api/(.*)",
+      "destination": {
+        "service": "backend"
+      }
     },
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": {
+        "service": "frontend"
+      }
     }
   ]
 }
